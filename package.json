@@ -1,0 +1,43 @@
+{
+  "name": "react16_webpack4_typescript",
+  "version": "1.0.0",
+  "description": "react typescript template",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot --mode development",
+    "dev": "webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umema4/react16_webpack4_typescript.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "webpack4"
+  ],
+  "author": "ume.app555@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/umema4/react16_webpack4_typescript/issues"
+  },
+  "homepage": "https://github.com/umema4/react16_webpack4_typescript#readme",
+  "devDependencies": {
+    "css-loader": "^3.5.2",
+    "cssnano": "^4.1.10",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.1.4",
+    "ts-loader": "^7.0.0",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
