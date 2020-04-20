@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const cssnano = require('cssnano');
 
 const isDebug = process.env.NODE_ENV !== 'production';
 console.log(`debug is ${isDebug}`);
@@ -23,7 +24,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader'
+        use: 'ts-loader',
       },
       {
         test: /\.css$/,
@@ -44,7 +45,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins: () => [
-                require('cssnano')({
+                cssnano({
                   zindex: false,
                 }),
               ],
