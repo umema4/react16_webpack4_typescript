@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --mode development",
     "dev": "webpack --mode development",
+    "format": "eslint src --fix --ext tsx",
     "lint:eslint": "eslint src --ext tsx",
     "lint:tsc": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
