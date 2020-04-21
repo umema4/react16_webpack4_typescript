@@ -3,7 +3,7 @@ import styles from './App.module.css';
 
 class App extends Component {
   handleClick = () => {
-    console.log('hoge');
+    console.log('fuga');
   };
 
   render() {

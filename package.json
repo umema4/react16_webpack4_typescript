@@ -21,9 +21,8 @@
     }
   },
   "lint-staged": {
-    "*.{tsx, css}": [
-      "npm run lint"
-    ]
+    "*.tsx": "npm run lint:eslint",
+    "*.css": "npm run lint:style"
   },
   "repository": {
     "type": "git",
