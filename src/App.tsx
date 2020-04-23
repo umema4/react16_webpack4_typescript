@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
 
-class App extends Component {
-  handleClick = () => {
-    console.log('fuga');
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  const handleClick = () => {
+    setCount(count + 1);
   };
 
-  render() {
-    return (
-      <div className={styles.App}>
-        <h1> TypeScript </h1>
-        <button type="button" onClick={this.handleClick}>
-          click me
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className={styles.App}>
+      <h1> TypeScript </h1>
+      <h2>クリック回数{count}</h2>
+      <button type="button" onClick={handleClick}>
+        click me
+      </button>
+    </div>
+  );
 }
 
 export default App;
