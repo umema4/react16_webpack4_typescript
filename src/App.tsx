@@ -9,6 +9,10 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Counter from './components/Counter';
+import { dispatch, useGlobalState } from './store';
+
+const signin = async () => dispatch({ type: 'signin' });
+const signout = async () => dispatch({ type: 'signout' });
 
 function App() {
   return (
@@ -41,28 +45,17 @@ function App() {
   );
 }
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb: () => void) {
-    fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb: () => void) {
-    fakeAuth.isAuthenticated = false;
-    setTimeout(cb, 100);
-  },
-};
-
 function AuthButton() {
   const history = useHistory();
+  const [isAuthenticated] = useGlobalState('isAuthenticated');
 
-  return fakeAuth.isAuthenticated ? (
+  return isAuthenticated ? (
     <p>
       Welcome!{' '}
       <button
         type="button"
         onClick={() => {
-          fakeAuth.signout(() => history.push('/'));
+          signout().then(() => history.push('/'));
         }}
       >
         Sign out
@@ -79,11 +72,12 @@ type PrivateRouteProps = {
 };
 
 function PrivateRoute({ children, path }: PrivateRouteProps) {
+  const [isAuthenticated] = useGlobalState('isAuthenticated');
   return (
     <Route
       path={path}
       render={({ location }) =>
-        fakeAuth.isAuthenticated ? (
+        isAuthenticated ? (
           children
         ) : (
           <Redirect
@@ -110,7 +104,7 @@ function LoginPage() {
     from: { pathname: '/' },
   };
   const login = () => {
-    fakeAuth.authenticate(() => {
+    signin().then(() => {
       history.replace(from);
     });
   };
