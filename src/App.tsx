@@ -5,14 +5,11 @@ import {
   Route,
   Link,
   Redirect,
-  useHistory,
-  useLocation,
 } from 'react-router-dom';
 import Counter from './components/Counter';
-import { dispatch, useGlobalState } from './store';
-
-const signin = async () => dispatch({ type: 'signin' });
-const signout = async () => dispatch({ type: 'signout' });
+import LoginPage from './components/LoginPage';
+import AuthButton from './components/AuthButton';
+import { useGlobalState } from './store';
 
 function App() {
   return (
@@ -45,27 +42,6 @@ function App() {
   );
 }
 
-function AuthButton() {
-  const history = useHistory();
-  const [isAuthenticated] = useGlobalState('isAuthenticated');
-
-  return isAuthenticated ? (
-    <p>
-      Welcome!{' '}
-      <button
-        type="button"
-        onClick={() => {
-          signout().then(() => history.push('/'));
-        }}
-      >
-        Sign out
-      </button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  );
-}
-
 type PrivateRouteProps = {
   children: React.ReactNode;
   path: string;
@@ -94,29 +70,6 @@ function PrivateRoute({ children, path }: PrivateRouteProps) {
 
 function PublicPage() {
   return <h3>Public</h3>;
-}
-
-function LoginPage() {
-  const history = useHistory();
-  const location = useLocation();
-
-  const { from } = (location.state as any) || {
-    from: { pathname: '/' },
-  };
-  const login = () => {
-    signin().then(() => {
-      history.replace(from);
-    });
-  };
-
-  return (
-    <div>
-      <p>You must log in to view the page at {from.pathname}</p>
-      <button type="button" onClick={login}>
-        Log in
-      </button>
-    </div>
-  );
 }
 
 export default App;
